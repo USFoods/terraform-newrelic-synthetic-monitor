@@ -1,6 +1,6 @@
 # Terraform New Relic Synthetics Monitor Module
 
-This module handles opinionated New Relic Synthetics Script Monitor creation and configuration.
+This module handles opinionated New Relic Synthetics Monitor creation and configuration.
 
 ## Compatability
 
@@ -9,7 +9,7 @@ If you find incompatibilities using Terraform `>=1.0`, please open an issue.
 
 ## Usage
 
-There are multiple examples included in the [examples](https://github.com/usfoods/terraform-newrelic-nrql-alert-condition/tree/master/examples) folder but simple usage is as follows:
+There are multiple examples included in the [examples](https://github.com/usfoods/terraform-newrelic-synthetics-monitor/tree/main/examples) folder but simple usage is as follows:
 
 ```hcl
 provider "newrelic" {
@@ -17,18 +17,18 @@ provider "newrelic" {
 }
 
 resource "newrelic_alert_policy" "main" {
-  name                = "Script API Condition Policy"
+  name                = "Simple Monitor Condition Policy"
   incident_preference = "PER_CONDITION_AND_TARGET"
 }
 
 module "main" {
-  source = "usfoods/synthetics-script-monitor/newrelic"
+  source = "usfoods/synthetics-monitor/newrelic"
 
   account_id = var.account_id
   enabled    = var.enabled
-  name       = "Script API Condition Synthetic Monitor"
+  name       = "Simple Monitor Condition"
 
-  script = "console.log('Example script is working...')"
+  uri = "https://www.one.newrelic.com"
 
   script_language = "JAVASCRIPT"
   runtime_type    = "NODE_API"
