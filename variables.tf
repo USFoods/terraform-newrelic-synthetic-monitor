@@ -83,11 +83,14 @@ variable "condition" {
   default     = null
   description = "Creates a NRQL Alert Condition for the monitor"
   type = object({
-    policy_id   = string
-    enabled     = optional(bool, true)
-    name        = optional(string, "")
-    description = optional(string, "")
-    runbook_url = optional(string, "")
-    tags        = optional(map(list(string)), {})
+    policy_id          = string
+    enabled            = optional(bool, true)
+    name               = optional(string, "")
+    description        = optional(string, "")
+    runbook_url        = optional(string, "")
+    aggregation_delay  = optional(number, 300)
+    aggregation_window = optional(number, 300)
+    slide_by           = optional(number, 60)
+    tags               = optional(map(list(string)), {})
   })
 }

@@ -16,12 +16,17 @@ provider "newrelic" {
   account_id = var.account_id
 }
 
+resource "newrelic_alert_policy" "main" {
+  name                = "Simple Monitor Condition Policy"
+  incident_preference = "PER_CONDITION_AND_TARGET"
+}
+
 module "main" {
   source = "../.."
 
   account_id = var.account_id
   enabled    = var.enabled
-  name       = "Simple Monitor Public"
+  name       = "Simple Monitor Condition"
 
   uri = "https://www.one.newrelic.com"
 
@@ -30,6 +35,10 @@ module "main" {
   runtime_version = "16.10"
 
   public_locations = ["US_WEST_1"]
+
+  condition = {
+    policy_id = newrelic_alert_policy.main.id
+  }
 
   tags = {
     "App.Id"   = ["1234"]

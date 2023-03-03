@@ -25,7 +25,9 @@ Note that this example may create resources which can cost money. Run `terraform
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_newrelic"></a> [newrelic](#provider\_newrelic) | ~>3.13.0 |
 
 ## Modules
 
@@ -35,7 +37,9 @@ No providers.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [newrelic_alert_policy.main](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_policy) | resource |
 
 ## Inputs
 
@@ -49,6 +53,16 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_bypass_head_request"></a> [bypass\_head\_request](#output\_bypass\_head\_request) | Monitor should skip default HEAD request and instead use GET verb in check |
+| <a name="output_condition_critical_operator"></a> [condition\_critical\_operator](#output\_condition\_critical\_operator) | The operator used when evaluating the critical threshold |
+| <a name="output_condition_critical_threshold"></a> [condition\_critical\_threshold](#output\_condition\_critical\_threshold) | The value which will trigger a critical incident |
+| <a name="output_condition_critical_threshold_duration"></a> [condition\_critical\_threshold\_duration](#output\_condition\_critical\_threshold\_duration) | The duration, in seconds, that the threshold must violate in order to create an incident |
+| <a name="output_condition_critical_threshold_occurrences"></a> [condition\_critical\_threshold\_occurrences](#output\_condition\_critical\_threshold\_occurrences) | The criteria for how many data points must be in violation for the specified threshold duration |
+| <a name="output_condition_description"></a> [condition\_description](#output\_condition\_description) | The description of the NRQL alert condition |
+| <a name="output_condition_enabled"></a> [condition\_enabled](#output\_condition\_enabled) | Whether the alert condition is enabled |
+| <a name="output_condition_name"></a> [condition\_name](#output\_condition\_name) | The title of the condition |
+| <a name="output_condition_policy_id"></a> [condition\_policy\_id](#output\_condition\_policy\_id) | The ID of the policy where this condition is used |
+| <a name="output_condition_runbook_url"></a> [condition\_runbook\_url](#output\_condition\_runbook\_url) | Runbook URL to display in notifications |
+| <a name="output_condition_tags"></a> [condition\_tags](#output\_condition\_tags) | The tags associated with the alert condition |
 | <a name="output_module_id"></a> [module\_id](#output\_module\_id) | The ID of the Synthetics script monitor |
 | <a name="output_module_name"></a> [module\_name](#output\_module\_name) | The name for the monitor |
 | <a name="output_module_period"></a> [module\_period](#output\_module\_period) | The interval at which this monitor is run |
@@ -60,5 +74,8 @@ No resources.
 | <a name="output_module_status"></a> [module\_status](#output\_module\_status) | The run state of the monitor |
 | <a name="output_module_tags"></a> [module\_tags](#output\_module\_tags) | The tags associated with the synthetics script monitor |
 | <a name="output_module_type"></a> [module\_type](#output\_module\_type) | The plaintext representing the monitor script |
+| <a name="output_policy_id"></a> [policy\_id](#output\_policy\_id) | The ID of the policy where this condition is used |
+| <a name="output_policy_incident_preference"></a> [policy\_incident\_preference](#output\_policy\_incident\_preference) | The rollup strategy for the policy |
+| <a name="output_policy_name"></a> [policy\_name](#output\_policy\_name) | The name of the policy |
 | <a name="output_treat_redirect_as_failure"></a> [treat\_redirect\_as\_failure](#output\_treat\_redirect\_as\_failure) | Categorize redirects during a monitor job as a failure |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
