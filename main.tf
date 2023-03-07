@@ -1,14 +1,4 @@
 locals {
-  threshold_durations = {
-    EVERY_MINUTE     = 300
-    EVERY_5_MINUTES  = 300
-    EVERY_15_MINUTES = 900
-    EVERY_30_MINUTES = 1800
-    EVERY_HOUR       = 3600
-    EVERY_6_HOURS    = 21600
-    EVERY_12_HOURS   = 43200
-    EVERY_DAY        = 86400
-  }
   private_locations = [
     for x in data.newrelic_synthetics_private_location.private_location : x.id
   ]
@@ -66,9 +56,11 @@ module "nrql_alert_condition" {
   name               = coalesce(var.condition.name, var.name)
   description        = coalesce(var.condition.description, "NRQL Alert Condition for Monitor: ${newrelic_synthetics_monitor.this.name}")
   runbook_url        = var.condition.runbook_url
-  aggregation_delay  = var.condition.aggregation_delay
-  aggregation_window = var.condition.aggregation_window
-  slide_by           = var.condition.slide_by
+  aggregation_method = "EVENT_TIMER"
+  aggregation_delay  = null
+  aggregation_timer  = 10
+  aggregation_window = 60
+  slide_by           = 30
 
   query = "FROM SyntheticCheck SELECT latest(if(result = 'FAILED', 1, 0)) WHERE entityGuid = '${newrelic_synthetics_monitor.this.id}' FACET entityGuid, monitorName, location"
 
@@ -77,7 +69,7 @@ module "nrql_alert_condition" {
   critical = {
     operator              = "ABOVE"
     threshold             = 0
-    threshold_duration    = local.threshold_durations[var.period]
-    threshold_occurrences = "AT_LEAST_ONCE"
+    threshold_duration    = 60
+    threshold_occurrences = "ALL"
   }
 }

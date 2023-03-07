@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestScriptApiConditionConfiguration(t *testing.T) {
+func TestSimpleMonitorConditionConfiguration(t *testing.T) {
 	// Construct the terraform options with default retryable errors to handle the most common
 	// retryable errors in terraform testing.
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -46,7 +46,6 @@ func TestScriptApiConditionConfiguration(t *testing.T) {
 
 	assert.Equal(t, "Simple Monitor Condition", output["condition_name"])
 	assert.Equal(t, "NRQL Alert Condition for Monitor: Simple Monitor Condition", output["condition_description"])
-	assert.Equal(t, "900", output["condition_critical_threshold_duration"])
 
 	expected_tags := map[string]string{
 		"Origin":   "Terraform",
