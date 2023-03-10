@@ -78,6 +78,7 @@ Then perform the following commands on the root folder:
 
 | Name | Type |
 |------|------|
+| [newrelic_entity_tags.this](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/entity_tags) | resource |
 | [newrelic_synthetics_monitor.this](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_monitor) | resource |
 | [newrelic_synthetics_private_location.private_location](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/data-sources/synthetics_private_location) | data source |
 

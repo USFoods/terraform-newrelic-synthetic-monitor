@@ -29,6 +29,10 @@ resource "newrelic_synthetics_monitor" "this" {
 
   treat_redirect_as_failure = var.treat_redirect_as_failure
   bypass_head_request       = var.bypass_head_request
+}
+
+resource "newrelic_entity_tags" "this" {
+  guid = newrelic_synthetics_monitor.this.id
 
   tag {
     key    = "Origin"
