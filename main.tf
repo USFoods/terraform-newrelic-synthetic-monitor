@@ -29,6 +29,8 @@ resource "newrelic_synthetics_monitor" "this" {
 
   treat_redirect_as_failure = var.treat_redirect_as_failure
   bypass_head_request       = var.bypass_head_request
+  verify_ssl                = var.verify_ssl
+  validation_string         = var.validation_string
 }
 
 resource "newrelic_entity_tags" "this" {

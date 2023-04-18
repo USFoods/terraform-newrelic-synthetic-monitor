@@ -79,6 +79,18 @@ variable "bypass_head_request" {
   type        = bool
 }
 
+variable "verify_ssl" {
+  default     = false
+  description = "Monitor should validate SSL certificate chain"
+  type        = bool
+}
+
+variable "validation_string" {
+  default     = "Validation text for monitor to search for at given URI"
+  description = "The specific version of the runtime type selected"
+  type        = string
+}
+
 variable "condition" {
   default     = null
   description = "Creates a NRQL Alert Condition for the monitor"
