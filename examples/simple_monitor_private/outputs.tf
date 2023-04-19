@@ -48,14 +48,24 @@ output "module_runtime_version" {
   value       = module.main.runtime_version
 }
 
-output "treat_redirect_as_failure" {
+output "module_treat_redirect_as_failure" {
   description = "Categorize redirects during a monitor job as a failure"
   value       = module.main.treat_redirect_as_failure
 }
 
-output "bypass_head_request" {
+output "module_bypass_head_request" {
   description = "Monitor should skip default HEAD request and instead use GET verb in check"
   value       = module.main.bypass_head_request
+}
+
+output "module_verify_ssl" {
+  description = "Monitor should verify SSL certificates"
+  value       = module.main.verify_ssl
+}
+
+output "module_validation_string" {
+  description = "The string to validate the monitor against"
+  value       = module.main.validation_string
 }
 
 output "module_tags" {

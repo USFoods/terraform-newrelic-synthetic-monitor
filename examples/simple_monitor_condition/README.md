@@ -52,13 +52,13 @@ Note that this example may create resources which can cost money. Run `terraform
 
 | Name | Description |
 |------|-------------|
-| <a name="output_bypass_head_request"></a> [bypass\_head\_request](#output\_bypass\_head\_request) | Monitor should skip default HEAD request and instead use GET verb in check |
 | <a name="output_condition_description"></a> [condition\_description](#output\_condition\_description) | The description of the NRQL alert condition |
 | <a name="output_condition_enabled"></a> [condition\_enabled](#output\_condition\_enabled) | Whether the alert condition is enabled |
 | <a name="output_condition_name"></a> [condition\_name](#output\_condition\_name) | The title of the condition |
 | <a name="output_condition_policy_id"></a> [condition\_policy\_id](#output\_condition\_policy\_id) | The ID of the policy where this condition is used |
 | <a name="output_condition_runbook_url"></a> [condition\_runbook\_url](#output\_condition\_runbook\_url) | Runbook URL to display in notifications |
 | <a name="output_condition_tags"></a> [condition\_tags](#output\_condition\_tags) | The tags associated with the alert condition |
+| <a name="output_module_bypass_head_request"></a> [module\_bypass\_head\_request](#output\_module\_bypass\_head\_request) | Monitor should skip default HEAD request and instead use GET verb in check |
 | <a name="output_module_id"></a> [module\_id](#output\_module\_id) | The ID of the Synthetics script monitor |
 | <a name="output_module_name"></a> [module\_name](#output\_module\_name) | The name for the monitor |
 | <a name="output_module_period"></a> [module\_period](#output\_module\_period) | The interval at which this monitor is run |
@@ -69,9 +69,11 @@ Note that this example may create resources which can cost money. Run `terraform
 | <a name="output_module_script_language"></a> [module\_script\_language](#output\_module\_script\_language) | The programing language that executes the script |
 | <a name="output_module_status"></a> [module\_status](#output\_module\_status) | The run state of the monitor |
 | <a name="output_module_tags"></a> [module\_tags](#output\_module\_tags) | The tags associated with the synthetics script monitor |
+| <a name="output_module_treat_redirect_as_failure"></a> [module\_treat\_redirect\_as\_failure](#output\_module\_treat\_redirect\_as\_failure) | Categorize redirects during a monitor job as a failure |
 | <a name="output_module_type"></a> [module\_type](#output\_module\_type) | The plaintext representing the monitor script |
+| <a name="output_module_validation_string"></a> [module\_validation\_string](#output\_module\_validation\_string) | The string to validate the monitor against |
+| <a name="output_module_verify_ssl"></a> [module\_verify\_ssl](#output\_module\_verify\_ssl) | Monitor should verify SSL certificates |
 | <a name="output_policy_id"></a> [policy\_id](#output\_policy\_id) | The ID of the policy where this condition is used |
 | <a name="output_policy_incident_preference"></a> [policy\_incident\_preference](#output\_policy\_incident\_preference) | The rollup strategy for the policy |
 | <a name="output_policy_name"></a> [policy\_name](#output\_policy\_name) | The name of the policy |
-| <a name="output_treat_redirect_as_failure"></a> [treat\_redirect\_as\_failure](#output\_treat\_redirect\_as\_failure) | Categorize redirects during a monitor job as a failure |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

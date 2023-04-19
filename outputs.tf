@@ -58,6 +58,16 @@ output "bypass_head_request" {
   value       = newrelic_synthetics_monitor.this.bypass_head_request
 }
 
+output "verify_ssl" {
+  description = "Monitor should verify SSL certificates"
+  value       = newrelic_synthetics_monitor.this.verify_ssl
+}
+
+output "validation_string" {
+  description = "The string to validate the response"
+  value       = newrelic_synthetics_monitor.this.validation_string
+}
+
 output "tags" {
   description = "The tags associated with the synthetics script monitor"
   value       = { for t in newrelic_entity_tags.this.tag : t.key => join(",", toset(t.values)) }

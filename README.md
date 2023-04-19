@@ -131,4 +131,6 @@ Then perform the following commands on the root folder:
 | <a name="output_tags"></a> [tags](#output\_tags) | The tags associated with the synthetics script monitor |
 | <a name="output_treat_redirect_as_failure"></a> [treat\_redirect\_as\_failure](#output\_treat\_redirect\_as\_failure) | Categorize redirects during a monitor job as a failure |
 | <a name="output_type"></a> [type](#output\_type) | The plaintext representing the monitor script |
+| <a name="output_validation_string"></a> [validation\_string](#output\_validation\_string) | The string to validate the response |
+| <a name="output_verify_ssl"></a> [verify\_ssl](#output\_verify\_ssl) | Monitor should verify SSL certificates |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
