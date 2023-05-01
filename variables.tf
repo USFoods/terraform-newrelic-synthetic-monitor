@@ -86,8 +86,8 @@ variable "verify_ssl" {
 }
 
 variable "validation_string" {
-  default     = "Validation text for monitor to search for at given URI"
-  description = "The specific version of the runtime type selected"
+  default     = ""
+  description = "Validation text for monitor to search for at given URI"
   type        = string
 }
 

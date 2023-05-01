@@ -101,7 +101,7 @@ Then perform the following commands on the root folder:
 | <a name="input_treat_redirect_as_failure"></a> [treat\_redirect\_as\_failure](#input\_treat\_redirect\_as\_failure) | Categorize redirects during a monitor job as a failure | `bool` | `false` | no |
 | <a name="input_type"></a> [type](#input\_type) | The plaintext representing the monitor script | `string` | `"SIMPLE"` | no |
 | <a name="input_uri"></a> [uri](#input\_uri) | he URI the monitor runs against | `string` | n/a | yes |
-| <a name="input_validation_string"></a> [validation\_string](#input\_validation\_string) | The specific version of the runtime type selected | `string` | `"Validation text for monitor to search for at given URI"` | no |
+| <a name="input_validation_string"></a> [validation\_string](#input\_validation\_string) | Validation text for monitor to search for at given URI | `string` | `""` | no |
 | <a name="input_verify_ssl"></a> [verify\_ssl](#input\_verify\_ssl) | Monitor should validate SSL certificate chain | `bool` | `false` | no |
 
 ## Outputs
