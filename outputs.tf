@@ -3,9 +3,14 @@ output "id" {
   value       = newrelic_synthetics_monitor.this.id
 }
 
-output "status" {
+output "account_id" {
+  description = "The account in which the Synthetics monitor was created"
+  value       = newrelic_synthetics_monitor.this.account_id
+}
+
+output "enabled" {
   description = "The run state of the monitor"
-  value       = newrelic_synthetics_monitor.this.status
+  value       = newrelic_synthetics_monitor.this.status == "ENABLED" ? true : false
 }
 
 output "name" {
@@ -13,14 +18,19 @@ output "name" {
   value       = newrelic_synthetics_monitor.this.name
 }
 
+output "period" {
+  description = "The interval at which this monitor is run"
+  value       = newrelic_synthetics_monitor.this.period
+}
+
+output "uri" {
+  description = "The URI the monitor runs against"
+  value       = newrelic_synthetics_monitor.this.uri
+}
+
 output "type" {
   description = "The plaintext representing the monitor script"
   value       = newrelic_synthetics_monitor.this.type
-}
-
-output "private_locations" {
-  description = "The private locations the monitor is running from"
-  value       = var.private_locations
 }
 
 output "public_locations" {
@@ -28,24 +38,24 @@ output "public_locations" {
   value       = newrelic_synthetics_monitor.this.locations_public
 }
 
-output "period" {
-  description = "The interval at which this monitor is run"
-  value       = newrelic_synthetics_monitor.this.period
+output "private_locations" {
+  description = "The private locations the monitor is running from"
+  value       = var.private_locations
 }
 
-output "script_language" {
-  description = "The programing language that executes the script"
-  value       = newrelic_synthetics_monitor.this.script_language
+output "validation_string" {
+  description = "The string to validate the response"
+  value       = newrelic_synthetics_monitor.this.validation_string
 }
 
-output "runtime_type" {
-  description = "The runtime that the monitor uses to run jobs"
-  value       = newrelic_synthetics_monitor.this.runtime_type
+output "verify_ssl" {
+  description = "Monitor should verify SSL certificates"
+  value       = newrelic_synthetics_monitor.this.verify_ssl
 }
 
-output "runtime_version" {
-  description = "The specific version of the runtime type selected"
-  value       = newrelic_synthetics_monitor.this.runtime_type_version
+output "tags" {
+  description = "The tags associated with the synthetics script monitor"
+  value       = { for t in newrelic_entity_tags.this.tag : t.key => join(",", toset(t.values)) }
 }
 
 output "treat_redirect_as_failure" {
@@ -58,19 +68,24 @@ output "bypass_head_request" {
   value       = newrelic_synthetics_monitor.this.bypass_head_request
 }
 
-output "verify_ssl" {
-  description = "Monitor should verify SSL certificates"
-  value       = newrelic_synthetics_monitor.this.verify_ssl
+output "enable_screenshot_on_failure_and_script" {
+  description = "Capture a screenshot during job execution"
+  value       = newrelic_synthetics_monitor.this.enable_screenshot_on_failure_and_script
 }
 
-output "validation_string" {
-  description = "The string to validate the response"
-  value       = newrelic_synthetics_monitor.this.validation_string
+output "runtime_version" {
+  description = "The specific version of the runtime type selected"
+  value       = newrelic_synthetics_monitor.this.runtime_type_version
 }
 
-output "tags" {
-  description = "The tags associated with the synthetics script monitor"
-  value       = { for t in newrelic_entity_tags.this.tag : t.key => join(",", toset(t.values)) }
+output "runtime_type" {
+  description = "The runtime that the monitor uses to run jobs"
+  value       = newrelic_synthetics_monitor.this.runtime_type
+}
+
+output "script_language" {
+  description = "The programing language that executes the script"
+  value       = newrelic_synthetics_monitor.this.script_language
 }
 
 output "condition_policy_id" {

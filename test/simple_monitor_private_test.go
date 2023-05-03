@@ -37,9 +37,9 @@ func TestSimpleMonitorPrivateConfiguration(t *testing.T) {
 		output[k] = fmt.Sprintf("%v", v)
 	}
 
-	assert.Equal(t, "Simple Monitor Private", output["module_name"])
-	assert.Equal(t, "SIMPLE", output["module_type"])
-	assert.Equal(t, fmt.Sprint([]string{"TF Example"}), output["module_private_locations"])
+	assert.Equal(t, "Simple Monitor Private", output["name"])
+	assert.Equal(t, "SIMPLE", output["type"])
+	assert.Equal(t, fmt.Sprint([]string{"TF Example"}), output["private_locations"])
 
 	expected_tags := map[string]string{
 		"Origin":   "Terraform",
@@ -47,5 +47,5 @@ func TestSimpleMonitorPrivateConfiguration(t *testing.T) {
 		"App.Code": "EXAMPLE",
 	}
 
-	assert.Equal(t, fmt.Sprint(expected_tags), output["module_tags"])
+	assert.Equal(t, fmt.Sprint(expected_tags), output["tags"])
 }

@@ -16,16 +16,16 @@ resource "newrelic_synthetics_monitor" "this" {
   status     = var.enabled ? "ENABLED" : "DISABLED"
   name       = var.name
   type       = var.type
+  period     = var.period
+  uri        = var.uri
 
-  locations_private = length(local.private_locations) == 0 ? null : (local.private_locations)
+  locations_private = length(local.private_locations) == 0 ? null : local.private_locations
   locations_public  = toset(var.public_locations)
 
-  period = var.period
-  uri    = var.uri
-
-  script_language      = var.script_language
-  runtime_type         = var.runtime_type
-  runtime_type_version = var.runtime_version
+  enable_screenshot_on_failure_and_script = var.enable_screenshot_on_failure_and_script
+  script_language                         = var.script_language
+  runtime_type                            = var.runtime_type
+  runtime_type_version                    = var.runtime_version
 
   treat_redirect_as_failure = var.treat_redirect_as_failure
   bypass_head_request       = var.bypass_head_request

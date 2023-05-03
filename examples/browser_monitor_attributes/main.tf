@@ -17,7 +17,7 @@ provider "newrelic" {
 }
 
 resource "newrelic_alert_policy" "main" {
-  name                = "Simple Monitor Condition Policy"
+  name                = "Browser Monitor Attributes Policy"
   incident_preference = "PER_CONDITION_AND_TARGET"
 }
 
@@ -26,16 +26,21 @@ module "main" {
 
   account_id = var.account_id
   enabled    = var.enabled
-  name       = "Browser Monitor Public"
+  name       = "Browser Monitor Attributes"
   type       = "BROWSER"
   uri        = "https://www.one.newrelic.com"
 
   public_locations = ["US_WEST_1"]
 
-  # Additional attributes supported by BROWSER monitor
-  script_language = "JAVASCRIPT"
-  runtime_type    = "CHROME_BROWSER"
-  runtime_version = "100"
+  # Additional attributes supported by monitor
+  validation_string = "New Relic"
+  verify_ssl        = true
+
+  # Additional attributes supported by the Browser monitor
+  script_language                         = "JAVASCRIPT"
+  runtime_type                            = "CHROME_BROWSER"
+  runtime_version                         = "100"
+  enable_screenshot_on_failure_and_script = true
 
   tags = {
     "App.Id"   = ["1234"]

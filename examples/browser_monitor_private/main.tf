@@ -42,14 +42,14 @@ module "main" {
   enabled    = var.enabled
   name       = "Browser Monitor Private"
   type       = "BROWSER"
+  uri        = "https://www.one.newrelic.com"
 
+  private_locations = ["TF Example"]
+
+  # Additional attributes supported by BRWOSER monitor
   script_language = "JAVASCRIPT"
   runtime_type    = "CHROME_BROWSER"
   runtime_version = "100"
-
-  uri = "https://www.one.newrelic.com"
-
-  private_locations = ["TF Example"]
 
   tags = {
     "App.Id"   = ["1234"]

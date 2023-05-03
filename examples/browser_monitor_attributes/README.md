@@ -1,6 +1,6 @@
-# Simple Monitor Private
+# Browser Monitor Attributes
 
-Configuration in this directory creates a new synthetic private location along with a new synthetic simple monitor configured to run in the newly created private location.
+Configuration in this directory creates a new synthetic browser monitor, with additional optional attributes populated, configured to run in a public location.
 
 ## Usage
 
@@ -28,7 +28,6 @@ Note that this example may create resources which can cost money. Run `terraform
 | Name | Version |
 |------|---------|
 | <a name="provider_newrelic"></a> [newrelic](#provider\_newrelic) | ~>3.13.0 |
-| <a name="provider_time"></a> [time](#provider\_time) | 0.9.1 |
 
 ## Modules
 
@@ -40,8 +39,7 @@ Note that this example may create resources which can cost money. Run `terraform
 
 | Name | Type |
 |------|------|
-| [newrelic_synthetics_private_location.main](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/synthetics_private_location) | resource |
-| [time_sleep.wait_10_seconds](https://registry.terraform.io/providers/hashicorp/time/0.9.1/docs/resources/sleep) | resource |
+| [newrelic_alert_policy.main](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/alert_policy) | resource |
 
 ## Inputs
 

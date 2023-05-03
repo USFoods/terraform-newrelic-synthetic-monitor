@@ -37,9 +37,9 @@ func TestSimpleMonitorPublicConfiguration(t *testing.T) {
 		output[k] = fmt.Sprintf("%v", v)
 	}
 
-	assert.Equal(t, "Simple Monitor Public", output["module_name"])
-	assert.Equal(t, "SIMPLE", output["module_type"])
-	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), output["module_public_locations"])
+	assert.Equal(t, "Simple Monitor Public", output["name"])
+	assert.Equal(t, "SIMPLE", output["type"])
+	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), output["public_locations"])
 
 	expected_tags := map[string]string{
 		"Origin":   "Terraform",
@@ -47,5 +47,5 @@ func TestSimpleMonitorPublicConfiguration(t *testing.T) {
 		"App.Code": "EXAMPLE",
 	}
 
-	assert.Equal(t, fmt.Sprint(expected_tags), output["module_tags"])
+	assert.Equal(t, fmt.Sprint(expected_tags), output["tags"])
 }

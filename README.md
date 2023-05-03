@@ -89,6 +89,7 @@ Then perform the following commands on the root folder:
 | <a name="input_account_id"></a> [account\_id](#input\_account\_id) | The id of the account where where the synthetic monitor lives | `string` | n/a | yes |
 | <a name="input_bypass_head_request"></a> [bypass\_head\_request](#input\_bypass\_head\_request) | Monitor should skip default HEAD request and instead use GET verb in check | `bool` | `false` | no |
 | <a name="input_condition"></a> [condition](#input\_condition) | Creates a NRQL Alert Condition for the monitor | <pre>object({<br>    policy_id   = string<br>    enabled     = optional(bool, true)<br>    name        = optional(string, "")<br>    description = optional(string, "")<br>    runbook_url = optional(string, "")<br>    tags        = optional(map(list(string)), {})<br>  })</pre> | `null` | no |
+| <a name="input_enable_screenshot_on_failure_and_script"></a> [enable\_screenshot\_on\_failure\_and\_script](#input\_enable\_screenshot\_on\_failure\_and\_script) | Capture a screenshot during job execution | `bool` | `false` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | The run state of the monitor | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name for the monitor | `string` | n/a | yes |
 | <a name="input_period"></a> [period](#input\_period) | The interval at which this monitor should run | `string` | `"EVERY_15_MINUTES"` | no |
@@ -108,6 +109,7 @@ Then perform the following commands on the root folder:
 
 | Name | Description |
 |------|-------------|
+| <a name="output_account_id"></a> [account\_id](#output\_account\_id) | The account in which the Synthetics monitor was created |
 | <a name="output_bypass_head_request"></a> [bypass\_head\_request](#output\_bypass\_head\_request) | Monitor should skip default HEAD request and instead use GET verb in check |
 | <a name="output_condition_critical_operator"></a> [condition\_critical\_operator](#output\_condition\_critical\_operator) | The operator used when evaluating the critical threshold |
 | <a name="output_condition_critical_threshold"></a> [condition\_critical\_threshold](#output\_condition\_critical\_threshold) | The value which will trigger a critical incident |
@@ -119,6 +121,8 @@ Then perform the following commands on the root folder:
 | <a name="output_condition_policy_id"></a> [condition\_policy\_id](#output\_condition\_policy\_id) | The ID of the policy where this condition is used |
 | <a name="output_condition_runbook_url"></a> [condition\_runbook\_url](#output\_condition\_runbook\_url) | Runbook URL to display in notifications |
 | <a name="output_condition_tags"></a> [condition\_tags](#output\_condition\_tags) | The tags associated with the alert condition |
+| <a name="output_enable_screenshot_on_failure_and_script"></a> [enable\_screenshot\_on\_failure\_and\_script](#output\_enable\_screenshot\_on\_failure\_and\_script) | Capture a screenshot during job execution |
+| <a name="output_enabled"></a> [enabled](#output\_enabled) | The run state of the monitor |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Synthetics script monitor |
 | <a name="output_name"></a> [name](#output\_name) | The name for the monitor |
 | <a name="output_period"></a> [period](#output\_period) | The interval at which this monitor is run |
@@ -127,10 +131,10 @@ Then perform the following commands on the root folder:
 | <a name="output_runtime_type"></a> [runtime\_type](#output\_runtime\_type) | The runtime that the monitor uses to run jobs |
 | <a name="output_runtime_version"></a> [runtime\_version](#output\_runtime\_version) | The specific version of the runtime type selected |
 | <a name="output_script_language"></a> [script\_language](#output\_script\_language) | The programing language that executes the script |
-| <a name="output_status"></a> [status](#output\_status) | The run state of the monitor |
 | <a name="output_tags"></a> [tags](#output\_tags) | The tags associated with the synthetics script monitor |
 | <a name="output_treat_redirect_as_failure"></a> [treat\_redirect\_as\_failure](#output\_treat\_redirect\_as\_failure) | Categorize redirects during a monitor job as a failure |
 | <a name="output_type"></a> [type](#output\_type) | The plaintext representing the monitor script |
+| <a name="output_uri"></a> [uri](#output\_uri) | The URI the monitor runs against |
 | <a name="output_validation_string"></a> [validation\_string](#output\_validation\_string) | The string to validate the response |
 | <a name="output_verify_ssl"></a> [verify\_ssl](#output\_verify\_ssl) | Monitor should verify SSL certificates |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

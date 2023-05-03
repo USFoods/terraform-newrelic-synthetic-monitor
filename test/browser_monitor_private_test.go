@@ -28,10 +28,10 @@ func TestBrowserMonitorPrivateConfiguration(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	// get output for module name, type, private locations, and tags
-	outputName := terraform.Output(t, terraformOptions, "module_name")
-	outputType := terraform.Output(t, terraformOptions, "module_type")
-	outputPrivateLocations := terraform.Output(t, terraformOptions, "module_private_locations")
-	outputTags := terraform.Output(t, terraformOptions, "module_tags")
+	outputName := terraform.Output(t, terraformOptions, "name")
+	outputType := terraform.Output(t, terraformOptions, "type")
+	outputPrivateLocations := terraform.Output(t, terraformOptions, "private_locations")
+	outputTags := terraform.Output(t, terraformOptions, "tags")
 
 	// assert name is Browser Monitor Private
 	assert.Equal(t, "Browser Monitor Private", outputName)

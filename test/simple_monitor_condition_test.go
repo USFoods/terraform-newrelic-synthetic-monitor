@@ -40,9 +40,9 @@ func TestSimpleMonitorConditionConfiguration(t *testing.T) {
 	assert.Equal(t, "Simple Monitor Condition Policy", output["policy_name"])
 	assert.Equal(t, output["policy_id"], output["condition_policy_id"])
 
-	assert.Equal(t, "Simple Monitor Condition", output["module_name"])
-	assert.Equal(t, "SIMPLE", output["module_type"])
-	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), output["module_public_locations"])
+	assert.Equal(t, "Simple Monitor Condition", output["name"])
+	assert.Equal(t, "SIMPLE", output["type"])
+	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), output["public_locations"])
 
 	assert.Equal(t, "Simple Monitor Condition", output["condition_name"])
 	assert.Equal(t, "NRQL Alert Condition for Monitor: Simple Monitor Condition", output["condition_description"])
@@ -53,6 +53,6 @@ func TestSimpleMonitorConditionConfiguration(t *testing.T) {
 		"App.Code": "EXAMPLE",
 	}
 
-	assert.Equal(t, fmt.Sprint(expected_tags), output["module_tags"])
+	assert.Equal(t, fmt.Sprint(expected_tags), output["tags"])
 	assert.Equal(t, fmt.Sprint(expected_tags), output["condition_tags"])
 }

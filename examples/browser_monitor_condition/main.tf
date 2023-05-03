@@ -24,14 +24,14 @@ module "main" {
   enabled    = var.enabled
   name       = "Browser Monitor Condition"
   type       = "BROWSER"
+  uri        = "https://www.one.newrelic.com"
 
-  uri = "https://www.one.newrelic.com"
+  public_locations = ["US_WEST_1"]
 
+  # Additional attributes supported by the Browser monitor
   script_language = "JAVASCRIPT"
   runtime_type    = "CHROME_BROWSER"
   runtime_version = "100"
-
-  public_locations = ["US_WEST_1"]
 
   condition = {
     policy_id = newrelic_alert_policy.main.id

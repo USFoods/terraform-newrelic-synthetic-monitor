@@ -33,10 +33,10 @@ func TestBrowserMonitorConditionConfiguration(t *testing.T) {
 	outputPolicyId := terraform.Output(t, terraformOptions, "policy_id")
 
 	// get output for module name, type, public locations, and tags
-	outputName := terraform.Output(t, terraformOptions, "module_name")
-	outputType := terraform.Output(t, terraformOptions, "module_type")
-	outputPublicLocations := terraform.Output(t, terraformOptions, "module_public_locations")
-	outputTags := terraform.Output(t, terraformOptions, "module_tags")
+	outputName := terraform.Output(t, terraformOptions, "name")
+	outputType := terraform.Output(t, terraformOptions, "type")
+	outputPublicLocations := terraform.Output(t, terraformOptions, "public_locations")
+	outputTags := terraform.Output(t, terraformOptions, "tags")
 
 	// get output for condition name, description, policy id, and tags
 	outputConditionName := terraform.Output(t, terraformOptions, "condition_name")

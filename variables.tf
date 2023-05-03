@@ -14,24 +14,6 @@ variable "name" {
   type        = string
 }
 
-variable "type" {
-  default     = "SIMPLE"
-  description = "The plaintext representing the monitor script"
-  type        = string
-}
-
-variable "private_locations" {
-  default     = null
-  description = "The private locations the monitor will run from"
-  type        = list(string)
-}
-
-variable "public_locations" {
-  default     = null
-  description = "The public locations the monitor will run from"
-  type        = list(string)
-}
-
 variable "period" {
   default     = "EVERY_15_MINUTES"
   description = "The interval at which this monitor should run"
@@ -43,22 +25,34 @@ variable "uri" {
   type        = string
 }
 
-variable "script_language" {
-  default     = ""
-  description = "The programing language that should execute the script"
+variable "type" {
+  default     = "SIMPLE"
+  description = "The plaintext representing the monitor script"
   type        = string
 }
 
-variable "runtime_type" {
+variable "public_locations" {
+  default     = null
+  description = "The public locations the monitor will run from"
+  type        = list(string)
+}
+
+variable "private_locations" {
+  default     = null
+  description = "The private locations the monitor will run from"
+  type        = list(string)
+}
+
+variable "validation_string" {
   default     = ""
-  description = "The runtime that the monitor will use to run jobs"
+  description = "Validation text for monitor to search for at given URI"
   type        = string
 }
 
-variable "runtime_version" {
-  default     = ""
-  description = "The specific version of the runtime type selected"
-  type        = string
+variable "verify_ssl" {
+  default     = false
+  description = "Monitor should validate SSL certificate chain"
+  type        = bool
 }
 
 variable "tags" {
@@ -79,15 +73,27 @@ variable "bypass_head_request" {
   type        = bool
 }
 
-variable "verify_ssl" {
+variable "enable_screenshot_on_failure_and_script" {
   default     = false
-  description = "Monitor should validate SSL certificate chain"
+  description = "Capture a screenshot during job execution"
   type        = bool
 }
 
-variable "validation_string" {
+variable "script_language" {
   default     = ""
-  description = "Validation text for monitor to search for at given URI"
+  description = "The programing language that should execute the script"
+  type        = string
+}
+
+variable "runtime_type" {
+  default     = ""
+  description = "The runtime that the monitor will use to run jobs"
+  type        = string
+}
+
+variable "runtime_version" {
+  default     = ""
+  description = "The specific version of the runtime type selected"
   type        = string
 }
 
