@@ -1,6 +1,6 @@
 # Simple Monitor Private
 
-Configuration in this directory creates a new synthetic private location along with a new synthetic simple monitor which is configured to run in the newly created private location.
+Configuration in this directory creates a new synthetic private location along with a new synthetic simple monitor configured to run in the newly created private location.
 
 ## Usage
 
