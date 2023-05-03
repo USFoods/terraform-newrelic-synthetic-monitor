@@ -1,6 +1,6 @@
-# Simple Monitor Public
+# Simple Monitor Attributes
 
-Configuration in this directory creates a new synthetic simple monitor configured to run in a public location.
+Configuration in this directory creates a new synthetic simple monitor, with additional optional attributes populated, configured to run in a public location.
 
 ## Usage
 

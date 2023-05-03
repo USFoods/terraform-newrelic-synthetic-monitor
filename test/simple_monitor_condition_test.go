@@ -27,32 +27,54 @@ func TestSimpleMonitorConditionConfiguration(t *testing.T) {
 	// Run "terraform init" and "terraform apply". Fail the test if there are any errors.
 	terraform.InitAndApply(t, terraformOptions)
 
-	// Get all output
-	outputAll := terraform.OutputAll(t, terraformOptions)
+	// Get output for policy name and id
+	outputPolicyName := terraform.Output(t, terraformOptions, "policy_name")
+	outputPolicyId := terraform.Output(t, terraformOptions, "policy_id")
 
-	// We actuall want a map of strings, not interfaces
-	output := map[string]string{}
-	// Would be nice if this output was built into Terratest
-	for k, v := range outputAll {
-		output[k] = fmt.Sprintf("%v", v)
-	}
+	// Get output for module name, type, public locations, and tags
+	outputName := terraform.Output(t, terraformOptions, "name")
+	outputType := terraform.Output(t, terraformOptions, "type")
+	outputPublicLocations := terraform.Output(t, terraformOptions, "public_locations")
+	outputTags := terraform.Output(t, terraformOptions, "tags")
 
-	assert.Equal(t, "Simple Monitor Condition Policy", output["policy_name"])
-	assert.Equal(t, output["policy_id"], output["condition_policy_id"])
+	// Get output for condition name, description, policy id, and tags
+	outputConditionName := terraform.Output(t, terraformOptions, "condition_name")
+	outputConditionDescription := terraform.Output(t, terraformOptions, "condition_description")
+	outputConditionPolicyId := terraform.Output(t, terraformOptions, "condition_policy_id")
+	outputConditionTags := terraform.Output(t, terraformOptions, "condition_tags")
 
-	assert.Equal(t, "Simple Monitor Condition", output["name"])
-	assert.Equal(t, "SIMPLE", output["type"])
-	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), output["public_locations"])
+	// Assert policy name is Simple Monitor Condition Policy
+	assert.Equal(t, "Simple Monitor Condition Policy", outputPolicyName)
+	// Assert policy id and condition policy id are the same
+	assert.Equal(t, outputPolicyId, outputConditionPolicyId)
 
-	assert.Equal(t, "Simple Monitor Condition", output["condition_name"])
-	assert.Equal(t, "NRQL Alert Condition for Monitor: Simple Monitor Condition", output["condition_description"])
-
-	expected_tags := map[string]string{
+	// Assert module name is Simple Monitor Condtion
+	assert.Equal(t, "Simple Monitor Condition", outputName)
+	// Assert module type is SIMPLE
+	assert.Equal(t, "SIMPLE", outputType)
+	// Assert module public locations is US_WEST_1
+	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), outputPublicLocations)
+	// Assert module tags are correct
+	expectedTags := map[string]string{
 		"Origin":   "Terraform",
 		"App.Id":   "1234",
 		"App.Code": "EXAMPLE",
 	}
+	assert.Equal(t, fmt.Sprint(expectedTags), outputTags)
 
-	assert.Equal(t, fmt.Sprint(expected_tags), output["tags"])
-	assert.Equal(t, fmt.Sprint(expected_tags), output["condition_tags"])
+	// Get output for module validation string and verify ssl
+	outputValidationString := terraform.Output(t, terraformOptions, "validation_string")
+	outputVerifySsl := terraform.Output(t, terraformOptions, "verify_ssl")
+
+	// Assert module validation string is empty
+	assert.Equal(t, "", outputValidationString)
+	// Assert module verify ssl is false
+	assert.Equal(t, "false", outputVerifySsl)
+
+	// Assert condition name is Simple Monitor Condition
+	assert.Equal(t, "Simple Monitor Condition", outputConditionName)
+	// Assert condition description is Simple Monitor Condition
+	assert.Equal(t, "NRQL Alert Condition for Monitor: Simple Monitor Condition", outputConditionDescription)
+	// Assert condition tags are correct
+	assert.Equal(t, fmt.Sprint(expectedTags), outputConditionTags)
 }

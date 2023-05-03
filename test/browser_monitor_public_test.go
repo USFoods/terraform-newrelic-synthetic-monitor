@@ -27,19 +27,19 @@ func TestBrowserMonitorPublicconfiguration(t *testing.T) {
 	// Run "terraform init" and "terraform apply". Fail the test if there are any errors.
 	terraform.InitAndApply(t, terraformOptions)
 
-	// get output for name, type, public locations, and tags
+	// Get output for name, type, public locations, and tags
 	outputName := terraform.Output(t, terraformOptions, "name")
 	outputType := terraform.Output(t, terraformOptions, "type")
 	outputPublicLocations := terraform.Output(t, terraformOptions, "public_locations")
 	outputTags := terraform.Output(t, terraformOptions, "tags")
 
-	// assert name is Browser Monitor Public
+	// Assert name is Browser Monitor Public
 	assert.Equal(t, "Browser Monitor Public", outputName)
-	// assert type is BROWSER
+	// Assert type is BROWSER
 	assert.Equal(t, "BROWSER", outputType)
-	// assert public locations is US_WEST_1
+	// Assert public locations is US_WEST_1
 	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), outputPublicLocations)
-	// assert tags are correct
+	// Assert tags are correct
 	expectedTags := map[string]string{
 		"Origin":   "Terraform",
 		"App.Id":   "1234",

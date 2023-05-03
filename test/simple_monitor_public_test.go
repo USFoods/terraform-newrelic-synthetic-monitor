@@ -27,25 +27,23 @@ func TestSimpleMonitorPublicConfiguration(t *testing.T) {
 	// Run "terraform init" and "terraform apply". Fail the test if there are any errors.
 	terraform.InitAndApply(t, terraformOptions)
 
-	// Get all output
-	outputAll := terraform.OutputAll(t, terraformOptions)
+	// Get output for name, type, public locations, and tags
+	outputName := terraform.Output(t, terraformOptions, "name")
+	outputType := terraform.Output(t, terraformOptions, "type")
+	outputPublicLocations := terraform.Output(t, terraformOptions, "public_locations")
+	outputTags := terraform.Output(t, terraformOptions, "tags")
 
-	// We actuall want a map of strings, not interfaces
-	output := map[string]string{}
-	// Would be nice if this output was built into Terratest
-	for k, v := range outputAll {
-		output[k] = fmt.Sprintf("%v", v)
-	}
-
-	assert.Equal(t, "Simple Monitor Public", output["name"])
-	assert.Equal(t, "SIMPLE", output["type"])
-	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), output["public_locations"])
-
-	expected_tags := map[string]string{
+	// Assert name is Simple Monitor Public
+	assert.Equal(t, "Simple Monitor Public", outputName)
+	// Assert type is SIMPLE
+	assert.Equal(t, "SIMPLE", outputType)
+	// Assert public locations is US_WEST_1
+	assert.Equal(t, fmt.Sprint([]string{"US_WEST_1"}), outputPublicLocations)
+	// Assert tags are correct
+	expectedTags := map[string]string{
 		"Origin":   "Terraform",
 		"App.Id":   "1234",
 		"App.Code": "EXAMPLE",
 	}
-
-	assert.Equal(t, fmt.Sprint(expected_tags), output["tags"])
+	assert.Equal(t, fmt.Sprint(expectedTags), outputTags)
 }

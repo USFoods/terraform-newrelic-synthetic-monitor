@@ -16,11 +16,6 @@ provider "newrelic" {
   account_id = var.account_id
 }
 
-resource "newrelic_alert_policy" "main" {
-  name                = "Browser Monitor Attributes Policy"
-  incident_preference = "PER_CONDITION_AND_TARGET"
-}
-
 module "main" {
   source = "../.."
 

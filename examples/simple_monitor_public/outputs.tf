@@ -137,13 +137,3 @@ output "condition_critical_threshold_occurrences" {
   description = "The criteria for how many data points must be in violation for the specified threshold duration"
   value       = module.main.condition_critical_threshold_occurrences
 }
-
-output "policy_id" {
-  description = "The ID of the policy where this condition is used"
-  value       = newrelic_alert_policy.main.id
-}
-
-output "policy_name" {
-  description = "The name of the policy where this condition is used"
-  value       = newrelic_alert_policy.main.name
-}
