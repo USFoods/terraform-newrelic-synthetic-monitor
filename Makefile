@@ -3,35 +3,41 @@
 # Global vars
 #############################
 PROJECT_NAME := $(shell basename $(shell pwd))
+TFINIT_SCRIPT    ?= ./scripts/tfinit.sh
 
 # Read all subsquent tasks as arguments of the first task
 RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(args) $(RUN_ARGS):;@:)
-
-DIR := $(if $(path),"environments/$(path)",".")
 
 #############################
 # Targets
 #############################
 clean:
 	@echo "=== $(PROJECT_NAME) === [ clean            ]: removing Terraform local states..."
-	@cd $(DIR) && find . -name '.terraform' -exec rm -rf {} +
-	@cd $(DIR) && find . -name '.terraform.lock.hcl' -exec rm -rf {} +
-	@cd $(DIR) && find . -name '*tfstate' -exec rm -rf {} +
-	@cd $(DIR) && find . -name '*tfstate.backup' -exec rm -rf {} +
+	@find . \( -name '.terraform*' -or -name '*tfstate*' \) -exec rm -rf {} +
+
+init: exec
+	@echo "=== $(PROJECT_NAME) === [ init             ]: initializing Terraform configuration..."
+	@$(TFINIT_SCRIPT)
+	@echo "=== $(PROJECT_NAME) === [ init             ]: initializing tflint configuration..."
+	@tflint --init
 
 fmt:
 	@echo "=== $(PROJECT_NAME) === [ format           ]: formatting Terraform configuration..."
-	@cd $(DIR) && terraform fmt --recursive
+	@terraform fmt --recursive
 
 lint:
 	@echo "=== $(PROJECT_NAME) === [ lint             ]: linting Terraform configuration..."
-	@cd $(DIR) && tflint --recursive
+	@tflint --recursive
 
 deps:
 	@echo "=== $(PROJECT_NAME) === [ deps             ]: downloading development dependencies..."
 	@go mod tidy
 
-ready: clean fmt lint
+exec: 
+	@echo "=== $(PROJECT_NAME) === [ exec             ]: making scripts executable..."
+	@chmod +x $(TFINIT_SCRIPT)
 
-.PHONY : clean lint deps fmt ready
+ready: fmt lint clean
+
+.PHONY : clean lint init deps exec fmt ready

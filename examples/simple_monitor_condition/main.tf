@@ -33,6 +33,7 @@ module "main" {
   script_language = "JAVASCRIPT"
   runtime_type    = "NODE_API"
   runtime_version = "16.10"
+  type            = "SIMPLE"
 
   public_locations = ["US_WEST_1"]
 
