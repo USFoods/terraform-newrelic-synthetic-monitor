@@ -3,11 +3,20 @@
 # Global vars
 #############################
 PROJECT_NAME := $(shell basename $(shell pwd))
+
+GO           ?= go
+VENDOR_CMD   ?= ${GO} mod tidy
+TF_LINTER	 ?= tflint
+TEST_RUNNER  ?= gotestsum
+GO_PKGS      ?= $(shell $(GO) list ./...)
+
 TFINIT_SCRIPT    ?= ./scripts/tfinit.sh
 
-# Read all subsquent tasks as arguments of the first task
-RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-$(eval $(args) $(RUN_ARGS):;@:)
+# Go file to track tool deps with go modules
+TOOL_DIR     ?= tools
+TOOL_CONFIG  ?= $(TOOL_DIR)/tools.go
+
+GOTOOLS ?= $(shell cd $(TOOL_DIR) && go list -f '{{ .Imports }}' -tags tools |tr -d '[]')
 
 #############################
 # Targets
@@ -16,11 +25,11 @@ clean:
 	@echo "=== $(PROJECT_NAME) === [ clean            ]: removing Terraform local states..."
 	@find . \( -name '.terraform*' -or -name '*tfstate*' \) -exec rm -rf {} +
 
-init: exec
+init: exec deps
 	@echo "=== $(PROJECT_NAME) === [ tf init          ]: initializing Terraform configuration..."
 	@$(TFINIT_SCRIPT)
 	@echo "=== $(PROJECT_NAME) === [ tflint init      ]: initializing tflint configuration..."
-	@tflint --init
+	@$(TF_LINTER) --init
 
 fmt:
 	@echo "=== $(PROJECT_NAME) === [ format           ]: formatting Terraform configuration..."
@@ -28,11 +37,20 @@ fmt:
 
 lint: init
 	@echo "=== $(PROJECT_NAME) === [ lint             ]: linting Terraform configuration..."
-	@tflint --recursive
+	@$(TF_LINTER) --recursive
 
-deps:
+test: init
+	@echo "=== $(PROJECT_NAME) === [ test             ]: running integration tests..."
+	@$(TEST_RUNNER) -f testname --packages "$(GO_PKGS)" -- -v -parallel 10
+
+deps: tools
 	@echo "=== $(PROJECT_NAME) === [ deps             ]: downloading development dependencies..."
-	@go mod tidy
+	@$(VENDOR_CMD)
+
+tools:
+	@echo "=== $(PROJECT_NAME) === [ tools            ]: Installing tools required by the project..."
+	@cd $(TOOL_DIR) && $(VENDOR_CMD)
+	@cd $(TOOL_DIR) && $(GO) install $(GOTOOLS)
 
 exec: 
 	@echo "=== $(PROJECT_NAME) === [ exec             ]: making scripts executable..."
@@ -40,4 +58,4 @@ exec:
 
 ready: fmt lint clean
 
-.PHONY : clean lint init deps exec fmt ready
+.PHONY : clean lint init deps exec fmt ready tools test
