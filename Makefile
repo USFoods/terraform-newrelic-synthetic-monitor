@@ -43,7 +43,7 @@ lint-init:
 
 test: init
 	@echo "=== $(PROJECT_NAME) === [ test             ]: running integration tests..."
-	@$(TEST_RUNNER) -f testname --packages "$(GO_PKGS)" -- -v -parallel 10
+	@TF_ACC=1 $(TEST_RUNNER) -f testname --rerun-fails=1 --packages "$(GO_PKGS)" -- -v -parallel 8
 
 deps: tools
 	@echo "=== $(PROJECT_NAME) === [ deps             ]: downloading development dependencies..."
