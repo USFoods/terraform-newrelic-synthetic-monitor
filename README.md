@@ -60,13 +60,13 @@ Then perform the following commands on the root folder:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
-| <a name="requirement_newrelic"></a> [newrelic](#requirement\_newrelic) | >= 3.13 |
+| <a name="requirement_newrelic"></a> [newrelic](#requirement\_newrelic) | ~>3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_newrelic"></a> [newrelic](#provider\_newrelic) | >= 3.13 |
+| <a name="provider_newrelic"></a> [newrelic](#provider\_newrelic) | ~>3.0 |
 
 ## Modules
 

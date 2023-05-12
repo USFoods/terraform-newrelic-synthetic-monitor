@@ -20,8 +20,7 @@ Note that this example may create resources which can cost money. Run `terraform
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.3 |
-| <a name="requirement_newrelic"></a> [newrelic](#requirement\_newrelic) | ~>3.13.0 |
-| <a name="requirement_time"></a> [time](#requirement\_time) | 0.9.1 |
+| <a name="requirement_newrelic"></a> [newrelic](#requirement\_newrelic) | ~>3.0 |
 
 ## Providers
 
