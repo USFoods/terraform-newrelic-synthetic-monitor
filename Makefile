@@ -39,7 +39,7 @@ lint: init deps
 	@echo "=== $(PROJECT_NAME) === [ lint             ]: linting Terraform configuration..."
 	@$(TF_LINTER) --recursive
 
-test: init
+test: init deps
 	@echo "=== $(PROJECT_NAME) === [ test             ]: running integration tests..."
 	@TF_ACC=1 $(TEST_RUNNER) -f testname --rerun-fails=1 --packages "$(GO_PKGS)" -- -v -parallel 8
 
