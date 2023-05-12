@@ -25,7 +25,7 @@ clean:
 	@echo "=== $(PROJECT_NAME) === [ clean            ]: removing Terraform local states..."
 	@find . \( -name '.terraform*' -or -name '*tfstate*' \) -exec rm -rf {} +
 
-init: exec deps
+init: exec
 	@echo "=== $(PROJECT_NAME) === [ tf init          ]: initializing Terraform configuration..."
 	@$(TFINIT_SCRIPT)
 
@@ -33,13 +33,11 @@ fmt:
 	@echo "=== $(PROJECT_NAME) === [ format           ]: formatting Terraform configuration..."
 	@terraform fmt --recursive
 
-lint: init lint-init
-	@echo "=== $(PROJECT_NAME) === [ lint             ]: linting Terraform configuration..."
-	@$(TF_LINTER) --recursive
-
-lint-init:
+lint: init deps
 	@echo "=== $(PROJECT_NAME) === [ lint-init        ]: initializing tflint configuration..."
 	@$(TF_LINTER) --init
+	@echo "=== $(PROJECT_NAME) === [ lint             ]: linting Terraform configuration..."
+	@$(TF_LINTER) --recursive
 
 test: init
 	@echo "=== $(PROJECT_NAME) === [ test             ]: running integration tests..."
