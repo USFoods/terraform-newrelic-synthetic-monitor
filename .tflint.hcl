@@ -4,7 +4,7 @@ config {
 
 plugin "newrelic" {
     enabled = true
-    version = "0.2.3"
+    version = "0.3.1"
     source = "github.com/usfoods/tflint-ruleset-newrelic"
 
     signing_key = <<-KEY

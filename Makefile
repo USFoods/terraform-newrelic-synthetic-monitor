@@ -17,16 +17,16 @@ clean:
 	@find . \( -name '.terraform*' -or -name '*tfstate*' \) -exec rm -rf {} +
 
 init: exec
-	@echo "=== $(PROJECT_NAME) === [ init             ]: initializing Terraform configuration..."
+	@echo "=== $(PROJECT_NAME) === [ tf init          ]: initializing Terraform configuration..."
 	@$(TFINIT_SCRIPT)
-	@echo "=== $(PROJECT_NAME) === [ init             ]: initializing tflint configuration..."
+	@echo "=== $(PROJECT_NAME) === [ tflint init      ]: initializing tflint configuration..."
 	@tflint --init
 
 fmt:
 	@echo "=== $(PROJECT_NAME) === [ format           ]: formatting Terraform configuration..."
 	@terraform fmt --recursive
 
-lint:
+lint: init
 	@echo "=== $(PROJECT_NAME) === [ lint             ]: linting Terraform configuration..."
 	@tflint --recursive
 

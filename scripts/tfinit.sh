@@ -8,6 +8,6 @@ for DIR in $DIRS; do
   # Check if directory contains '.terraform.lock.hcl' file
   if [[ ! -f "$DIR/.terraform.lock.hcl" ]]; then
     # If '.terraform.lock.hcl' file does not exist, run `terraform init` in directory
-    terraform -chdir=$DIR init
+    bash -c "terraform -chdir=$DIR init"
   fi
 done
