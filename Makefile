@@ -28,16 +28,18 @@ clean:
 init: exec deps
 	@echo "=== $(PROJECT_NAME) === [ tf init          ]: initializing Terraform configuration..."
 	@$(TFINIT_SCRIPT)
-	@echo "=== $(PROJECT_NAME) === [ tflint init      ]: initializing tflint configuration..."
-	@$(TF_LINTER) --init
 
 fmt:
 	@echo "=== $(PROJECT_NAME) === [ format           ]: formatting Terraform configuration..."
 	@terraform fmt --recursive
 
-lint: init
+lint: init lint-init
 	@echo "=== $(PROJECT_NAME) === [ lint             ]: linting Terraform configuration..."
 	@$(TF_LINTER) --recursive
+
+lint-init:
+	@echo "=== $(PROJECT_NAME) === [ lint-init        ]: initializing tflint configuration..."
+	@$(TF_LINTER) --init
 
 test: init
 	@echo "=== $(PROJECT_NAME) === [ test             ]: running integration tests..."
