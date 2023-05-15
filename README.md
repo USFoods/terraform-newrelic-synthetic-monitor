@@ -72,7 +72,7 @@ Then perform the following commands on the root folder:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_nrql_alert_condition"></a> [nrql\_alert\_condition](#module\_nrql\_alert\_condition) | usfoods/nrql-alert-condition/newrelic | 1.2.0 |
+| <a name="module_nrql_alert_condition"></a> [nrql\_alert\_condition](#module\_nrql\_alert\_condition) | usfoods/nrql-alert-condition/newrelic | 1.3.0 |
 
 ## Resources
 
