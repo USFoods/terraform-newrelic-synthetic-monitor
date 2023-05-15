@@ -52,7 +52,7 @@ resource "newrelic_entity_tags" "this" {
 
 module "nrql_alert_condition" {
   source  = "usfoods/nrql-alert-condition/newrelic"
-  version = "1.0.2"
+  version = "1.2.0"
 
   count = var.condition == null ? 0 : 1
 
