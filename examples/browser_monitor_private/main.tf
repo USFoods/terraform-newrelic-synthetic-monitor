@@ -15,7 +15,7 @@ resource "newrelic_synthetics_private_location" "main" {
 resource "time_sleep" "wait_10_seconds" {
   depends_on = [newrelic_synthetics_private_location.main]
 
-  create_duration = "10s"
+  create_duration = "20s"
 }
 
 # create module for private browser monitor
