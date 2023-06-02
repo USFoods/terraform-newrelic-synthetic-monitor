@@ -88,6 +88,11 @@ output "script_language" {
   value       = newrelic_synthetics_monitor.this.script_language
 }
 
+output "condition_id" {
+  description = "The ID of the alert condition"
+  value       = try(module.nrql_alert_condition[0].id, "")
+}
+
 output "condition_policy_id" {
   description = "The ID of the policy where this condition is used"
   value       = try(module.nrql_alert_condition[0].policy_id, "")

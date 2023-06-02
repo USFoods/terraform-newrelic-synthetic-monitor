@@ -88,6 +88,11 @@ output "script_language" {
   value       = module.main.script_language
 }
 
+output "condition_id" {
+  description = "The ID of the NRQL alert condition"
+  value       = module.main.condition_id
+}
+
 output "condition_policy_id" {
   description = "The ID of the policy where this condition is used"
   value       = module.main.condition_policy_id

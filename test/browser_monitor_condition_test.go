@@ -38,7 +38,8 @@ func TestBrowserMonitorConditionConfiguration(t *testing.T) {
 	outputPublicLocations := terraform.Output(t, terraformOptions, "public_locations")
 	outputTags := terraform.Output(t, terraformOptions, "tags")
 
-	// Get output for condition name, description, policy id, and tags
+	// Get output for condition id, name, description, policy id, and tags
+	outputConditionId := terraform.Output(t, terraformOptions, "condition_id")
 	outputConditionName := terraform.Output(t, terraformOptions, "condition_name")
 	outputConditionDescription := terraform.Output(t, terraformOptions, "condition_description")
 	outputConditionPolicyId := terraform.Output(t, terraformOptions, "condition_policy_id")
@@ -63,6 +64,8 @@ func TestBrowserMonitorConditionConfiguration(t *testing.T) {
 	}
 	assert.Equal(t, fmt.Sprint(expectedTags), outputTags)
 
+	// Assert condition id is not empty
+	assert.NotEmpty(t, outputConditionId)
 	// Assert condition name is Browser Monitor Condition
 	assert.Equal(t, "Browser Monitor Condition", outputConditionName)
 	// Assert condition description is correct
