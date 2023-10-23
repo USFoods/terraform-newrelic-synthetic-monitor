@@ -1,7 +1,8 @@
 locals {
-  private_locations = [
-    for x in data.newrelic_synthetics_private_location.private_location : x.id
-  ]
+  private_location_ids = concat(
+    [for loc in data.newrelic_synthetics_private_location.private_location : loc.id],
+    coalesce(var.private_location_ids, [])
+  )
 }
 
 data "newrelic_synthetics_private_location" "private_location" {
@@ -19,7 +20,7 @@ resource "newrelic_synthetics_monitor" "this" {
   period     = var.period
   uri        = var.uri
 
-  locations_private = length(local.private_locations) == 0 ? null : local.private_locations
+  locations_private = length(local.private_location_ids) == 0 ? null : local.private_location_ids
   locations_public  = toset(var.public_locations)
 
   enable_screenshot_on_failure_and_script = var.enable_screenshot_on_failure_and_script

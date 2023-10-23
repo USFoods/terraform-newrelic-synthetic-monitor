@@ -2,27 +2,19 @@ provider "newrelic" {
   account_id = var.account_id
 }
 
-provider "time" {
-  # configuration options
-}
+# Unfortunately required for test assertion as currently run block
+# output from the setup_configuration run block can't be captured
+# https://github.com/hashicorp/terraform/pull/34118
 
-# create private location
-resource "newrelic_synthetics_private_location" "main" {
-  description = "A private location for an example"
-  name        = "TF Example"
-}
-
-resource "time_sleep" "wait_10_seconds" {
-  depends_on = [newrelic_synthetics_private_location.main]
-
-  create_duration = "20s"
+# tflint-ignore: terraform_unused_declarations
+data "newrelic_synthetics_private_location" "setup" {
+  account_id = var.account_id
+  name       = "TF Example"
 }
 
 # create module for private browser monitor
 module "main" {
   source = "../.."
-
-  depends_on = [time_sleep.wait_10_seconds]
 
   account_id = var.account_id
   enabled    = var.enabled
