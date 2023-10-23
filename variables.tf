@@ -43,6 +43,12 @@ variable "private_locations" {
   type        = list(string)
 }
 
+variable "private_location_ids" {
+  default     = null
+  description = "The private location ids the monitor will run from"
+  type        = list(string)
+}
+
 variable "validation_string" {
   default     = ""
   description = "Validation text for monitor to search for at given URI"

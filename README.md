@@ -93,6 +93,7 @@ Then perform the following commands on the root folder:
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | The run state of the monitor | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name for the monitor | `string` | n/a | yes |
 | <a name="input_period"></a> [period](#input\_period) | The interval at which this monitor should run | `string` | `"EVERY_15_MINUTES"` | no |
+| <a name="input_private_location_ids"></a> [private\_location\_ids](#input\_private\_location\_ids) | The private location ids the monitor will run from | `list(string)` | `null` | no |
 | <a name="input_private_locations"></a> [private\_locations](#input\_private\_locations) | The private locations the monitor will run from | `list(string)` | `null` | no |
 | <a name="input_public_locations"></a> [public\_locations](#input\_public\_locations) | The public locations the monitor will run from | `list(string)` | `null` | no |
 | <a name="input_runtime_type"></a> [runtime\_type](#input\_runtime\_type) | The runtime that the monitor will use to run jobs | `string` | `""` | no |
@@ -119,6 +120,7 @@ Then perform the following commands on the root folder:
 | <a name="output_condition_enabled"></a> [condition\_enabled](#output\_condition\_enabled) | Whether the alert condition is enabled |
 | <a name="output_condition_id"></a> [condition\_id](#output\_condition\_id) | The ID of the alert condition |
 | <a name="output_condition_name"></a> [condition\_name](#output\_condition\_name) | The title of the condition |
+| <a name="output_condition_nrql_query"></a> [condition\_nrql\_query](#output\_condition\_nrql\_query) | The NRQL query executed for the condition |
 | <a name="output_condition_policy_id"></a> [condition\_policy\_id](#output\_condition\_policy\_id) | The ID of the policy where this condition is used |
 | <a name="output_condition_runbook_url"></a> [condition\_runbook\_url](#output\_condition\_runbook\_url) | Runbook URL to display in notifications |
 | <a name="output_condition_tags"></a> [condition\_tags](#output\_condition\_tags) | The tags associated with the alert condition |
