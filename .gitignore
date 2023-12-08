@@ -36,3 +36,6 @@ override.tf.json
 
 # Ignore lock files
 .terraform.lock.hcl
+
+# Always crashing the party
+.DS_Store
